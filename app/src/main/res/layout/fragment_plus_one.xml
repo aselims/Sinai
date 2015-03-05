@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlusOneFragment">
+
+
+    <com.google.android.gms.plus.PlusOneButton xmlns:plus="http://schemas.android.com/apk/lib/com.google.android.gms.plus"
+        android:id="@+id/plus_one_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        plus:annotation="inline"
+        plus:size="standard"
+        android:layout_margin="5dp"/>
+
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:text="An initiative supporting Sinai!"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/plus_one_button"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"/>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewContent1"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="\n For Suggestions: "
+        android:layout_margin="3dp"
+        android:layout_below="@+id/textView"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textViewMail"
+        android:layout_margin="5dp"
+
+        android:layout_below="@+id/textViewContent1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewDistance"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_margin="3dp"
+        android:layout_alignParentBottom="true"
+        />
+
+</RelativeLayout>

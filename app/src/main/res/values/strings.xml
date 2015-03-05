@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Sinai2</string>
+    <string name="app_name">Sinai</string>
 
 
     <string name="title_section1">Geography</string>
     <string name="title_section2">History</string>
-    <string name="title_section3">News</string>
+    <string name="title_section3">Contact</string>
 
     <string name="hello_world">Hello world!</string>
 

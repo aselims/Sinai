@@ -16,10 +16,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.maps.MapFragment;
 
 import org.selimsinai.sinai2.fragments.ContentFragment;
 import org.selimsinai.sinai2.fragments.MapsFragment;
+import org.selimsinai.sinai2.fragments.PlusOneFragment;
 
 
 public class MainActivity extends Activity implements ActionBar.TabListener {
@@ -39,10 +43,24 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
      */
     ViewPager mViewPager;
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
@@ -77,10 +95,15 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+
+        Tracker t =((Util) getApplication()).getTracker(Util.TrackerName.APP_TRACKER);
+        t.setScreenName("mainActivity");
+        t.send(new HitBuilders.AppViewBuilder().build());
+
     }
 
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -101,7 +124,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
         return super.onOptionsItemSelected(item);
     }
-
+*/
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         // When the given tab is selected, switch to the corresponding page in
@@ -140,7 +163,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                     tabFragment = ContentFragment.newInstance();
                     break;
                 case 2:
-                    tabFragment = PlaceholderFragment.newInstance(3);
+                    tabFragment = PlusOneFragment.newInstance();
             }
             return tabFragment;
 
@@ -159,6 +182,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
             switch (position) {
                 case 0:
                     return getString(R.string.title_section1).toUpperCase(l);
+
                 case 1:
                     return getString(R.string.title_section2).toUpperCase(l);
                 case 2:
@@ -168,20 +192,20 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         }
     }
 
-    /**
+  /*  *//**
      * A placeholder fragment containing a simple view.
-     */
+     *//*
     public static class PlaceholderFragment extends Fragment {
-        /**
+        *//**
          * The fragment argument representing the section number for this
          * fragment.
-         */
+         *//*
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        /**
+        *//**
          * Returns a new instance of this fragment for the given section
          * number.
-         */
+         *//*
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -200,5 +224,5 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
             return rootView;
         }
     }
-
+*/
 }
