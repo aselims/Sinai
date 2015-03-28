@@ -1,7 +1,10 @@
 package org.selimsinai.sinai2.fragments;
 
 
-import android.app.Fragment;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -22,15 +25,8 @@ import com.google.android.gms.plus.PlusOneButton;
  * Use the {@link PlusOneFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlusOneFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class PlusOneFragment extends DialogFragment {
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     // The URL to +1.  Must be a valid URL.
     private final String PLUS_ONE_URL = "https://plus.google.com/u/0/b/104932676086370277659/104932676086370277659";
@@ -41,6 +37,7 @@ public class PlusOneFragment extends Fragment {
     private PlusOneButton mPlusOneButton;
     private Tracker t;
 
+    View dialogView;
 
 
     // TODO: Rename and change types and number of parameters
@@ -60,10 +57,7 @@ public class PlusOneFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
 
          t = ((Util) getActivity().getApplication()).getTracker(Util.TrackerName.APP_TRACKER);
         t.setScreenName("PlusOne");
@@ -71,15 +65,15 @@ public class PlusOneFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_plus_one, container, false);
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        dialogView = getActivity().getLayoutInflater().inflate(R.layout.fragment_plus_one, null);
 
+
+        t.send(new HitBuilders.EventBuilder().setCategory("fragments").setAction("viewed About").build());
         //Find the +1 button
-        mPlusOneButton = (PlusOneButton) view.findViewById(R.id.plus_one_button);
+        mPlusOneButton = (PlusOneButton) dialogView.findViewById(R.id.plus_one_button);
 
-        TextView TVmail = (TextView) view.findViewById(R.id.textViewMail);
+        TextView TVmail = (TextView) dialogView.findViewById(R.id.textViewMail);
         TVmail.setMovementMethod(LinkMovementMethod.getInstance());
         TVmail.setText(Html.fromHtml("<a href=\"mailto:selim.2k@gmail.com\">Mail me!"));
 
@@ -91,11 +85,26 @@ public class PlusOneFragment extends Fragment {
             }
         });
 
-        TextView TVDistance = (TextView) view.findViewById(R.id.textViewDistance);
-        TVDistance.setText("The distance between here and Sinai is "+MapsFragment.distanceInKm + " Km");
+        TextView TVDistance = (TextView) dialogView.findViewById(R.id.textViewDistance);
+        TVDistance.setText("The distance between here and Sinai is " + MapsFragment.distanceInKm + " Km");
 
-        return view;
+
+        return new AlertDialog.Builder(getActivity())
+                .setView(dialogView)
+                //.setIcon(R.drawable.icon)
+                .setTitle(R.string.about)
+                .setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dismiss();
+                    }
+                })
+                .create();
+
+
     }
+
+
 
 
     @Override

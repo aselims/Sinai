@@ -22,6 +22,7 @@ import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.maps.MapFragment;
 
 import org.selimsinai.sinai2.fragments.ContentFragment;
+import org.selimsinai.sinai2.fragments.ImageFragment;
 import org.selimsinai.sinai2.fragments.MapsFragment;
 import org.selimsinai.sinai2.fragments.PlusOneFragment;
 
@@ -103,7 +104,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     }
 
 
-   /* @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -118,13 +119,15 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            //getFragmentManager().beginTransaction().show(PlusOneFragment.newInstance()).commit();
+
+            PlusOneFragment.newInstance().show(getFragmentManager() , "AboutDialog");
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-*/
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         // When the given tab is selected, switch to the corresponding page in
@@ -160,10 +163,11 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                     tabFragment = MapsFragment.getInstance();
                     break;
                 case 1:
-                    tabFragment = ContentFragment.newInstance();
+                    tabFragment = ContentFragment.getInstance();
                     break;
                 case 2:
-                    tabFragment = PlusOneFragment.newInstance();
+                   // tabFragment = PlusOneFragment.newInstance();
+                    tabFragment = ImageFragment.getInstance();
             }
             return tabFragment;
 

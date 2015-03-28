@@ -39,7 +39,7 @@ public class ContentFragment extends WebViewFragment {
 
     private static ContentFragment contentFragment;
     // TODO: Rename and change types and number of parameters
-    public static ContentFragment newInstance() {
+    public static ContentFragment getInstance() {
         if(contentFragment == null){
              contentFragment = new ContentFragment();
             Bundle args = new Bundle();

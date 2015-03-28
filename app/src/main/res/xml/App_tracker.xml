@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"
+     ?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="TypographyDashes">
+
+    <screenName name="org.selimsinai.sinai2.fragments.PlusOneFragment">
+        PlusOneFragmentScreenName
+    </screenName>
+    <screenName name="org.selimsinai.sinai2.fragments.MapsFragment">
+        SinaiApp MapsFragment
+    </screenName>
+    <!--  The following value should be replaced with correct property id. -->
+    <string name="ga_trackingId">UA-60335447-1</string>
+
+
+    <!-- Percentage of events to include in reports -->
+    <string name="ga_sampleFrequency">100.0</string>
+
+    <!-- Enable automatic Activity measurement -->
+    <bool name="ga_autoActivityTracking">true</bool>
+
+    <!-- catch and report uncaught exceptions from the app -->
+    <bool name="ga_reportUncaughtExceptions">true</bool>
+
+    <!-- How long a session exists before giving up -->
+    <integer name="ga_sessionTimeout">-1</integer>
+
+    <bool name="ga_dryRun">false</bool>
+
+    <!-- If ga_autoActivityTracking is enabled, an alternate screen name can be specified to
+    substitute for the full length canonical Activity name in screen view hit. In order to
+    specify an alternate screen name use an <screenName> element, with the name attribute
+    specifying the canonical name, and the value the alias to use instead. -->
+    <screenName name="org.selimsinai.sinai2.MainActivity">sActivity</screenName>
+
+
+        <string name="ga_appName">GoogleAnalyticsApp</string>
+        <string name="ga_appVersion">1.1.3</string>
+
+        <bool name="ga_debug">true</bool>
+
+        <item name="ga_dispatchPeriod" format="integer" type="integer">120</item>
+
+
+        <bool name="ga_anonymizeIp">true</bool>
+
+
+
+
+    </resources>
+
