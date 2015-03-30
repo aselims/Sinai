@@ -11,6 +11,7 @@ import android.webkit.WebViewClient;
 import android.webkit.WebViewFragment;
 
 import org.selimsinai.sinai2.R;
+import org.selimsinai.sinai2.Util;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,11 +71,14 @@ public class ContentFragment extends WebViewFragment {
                              Bundle savedInstanceState) {
 
         View result = super.onCreateView(inflater, container, savedInstanceState);
-        getWebView().getSettings().setJavaScriptEnabled(true);
-        getWebView().getSettings().setSupportZoom(true);
-        getWebView().getSettings().setBuiltInZoomControls(true);
-        getWebView().setWebViewClient(new WebViewClient());
-        getWebView().loadUrl("http://en.wikipedia.org/wiki/Sinai_Peninsula");
+        if(Util.isConnected(getActivity())){
+            getWebView().getSettings().setJavaScriptEnabled(true);
+            getWebView().getSettings().setSupportZoom(true);
+            getWebView().getSettings().setBuiltInZoomControls(true);
+            getWebView().setWebViewClient(new WebViewClient());
+            getWebView().loadUrl("http://en.wikipedia.org/wiki/Sinai_Peninsula");
+
+        }
 
         return result;
     }

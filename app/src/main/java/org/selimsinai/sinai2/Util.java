@@ -58,7 +58,7 @@ public class Util extends Application {
     }
 
 
-    public static boolean getConnectivity(Context context) {
+    public static boolean isConnected(Context context) {
         ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
@@ -68,6 +68,7 @@ public class Util extends Application {
             return false;
         }
     }
+
 
 
 

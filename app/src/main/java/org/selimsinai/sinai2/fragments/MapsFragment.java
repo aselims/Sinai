@@ -14,6 +14,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import org.selimsinai.sinai2.R;
 import org.selimsinai.sinai2.Util;
 
+import java.io.UTFDataFormatException;
+
 /**
  * Created by ssalman on 2/10/2015.
  */
@@ -58,14 +60,18 @@ public class MapsFragment extends MapFragment implements OnMapReadyCallback {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        getMapAsync(this);
+        if(Util.isConnected(getActivity())) {
+            getMapAsync(this);
 
-        LatLng origin = Util.getLocation(getActivity());
-        LatLng Sinai = new LatLng(29.5000, 33.8333);
+            LatLng origin = Util.getLocation(getActivity());
+            LatLng Sinai = new LatLng(29.5000, 33.8333);
 
-        float distance = Util. getDistanceInMetres(origin, Sinai);
-        Toast.makeText(getActivity(),"The distance between here and Sinai is " + String.valueOf(distance/1000.0), Toast.LENGTH_LONG).show();
-        distanceInKm = String.valueOf(distance/1000.0);
+            float distance = Util.getDistanceInMetres(origin, Sinai);
+            Toast.makeText(getActivity(), "The distance between here and Sinai is " + String.valueOf(distance / 1000.0), Toast.LENGTH_LONG).show();
+            distanceInKm = String.valueOf(distance / 1000.0);
+        }else {
+            Toast.makeText(getActivity(), "No internet connection!", Toast.LENGTH_LONG).show();
+        }
     }
 
 

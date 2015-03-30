@@ -86,7 +86,10 @@ public class PlusOneFragment extends DialogFragment {
         });
 
         TextView TVDistance = (TextView) dialogView.findViewById(R.id.textViewDistance);
-        TVDistance.setText("The distance between here and Sinai is " + MapsFragment.distanceInKm + " Km");
+        if(Util.isConnected(getActivity())){
+            TVDistance.setText("The distance between here and Sinai is " + MapsFragment.distanceInKm + " Km");
+
+        }
 
 
         return new AlertDialog.Builder(getActivity())
